@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_spring-springmvc-mybatis" default="compile.module.spring-springmvc-mybatis">
+  <dirname property="module.spring-springmvc-mybatis.basedir" file="${ant.file.module_spring-springmvc-mybatis}"/>
+  
+  <property name="module.jdk.home.spring-springmvc-mybatis" value="${jdk.home.1.8}"/>
+  <property name="module.jdk.bin.spring-springmvc-mybatis" value="${jdk.bin.1.8}"/>
+  <property name="module.jdk.classpath.spring-springmvc-mybatis" value="jdk.classpath.1.8"/>
+  
+  <property name="compiler.args.spring-springmvc-mybatis" value="-encoding UTF-8 -source 5 -target 1.5 ${compiler.args}"/>
+  
+  <property name="spring-springmvc-mybatis.output.dir" value="${module.spring-springmvc-mybatis.basedir}/target/classes"/>
+  <property name="spring-springmvc-mybatis.testoutput.dir" value="${module.spring-springmvc-mybatis.basedir}/target/test-classes"/>
+  
+  <path id="spring-springmvc-mybatis.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="spring-springmvc-mybatis.module.production.classpath">
+    <path refid="${module.jdk.classpath.spring-springmvc-mybatis}"/>
+    <path refid="library.maven:_org.springframework:spring-webmvc:5.2.9.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-aop:5.2.9.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-beans:5.2.9.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-context:5.2.9.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-core:5.2.9.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-jcl:5.2.9.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-expression:5.2.9.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-web:5.2.9.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-aspects:5.2.9.release.classpath"/>
+    <path refid="library.maven:_org.aspectj:aspectjweaver:1.9.6.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-jdbc:5.2.9.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-tx:5.2.9.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-test:5.2.9.release.classpath"/>
+    <path refid="library.maven:_org.mybatis:mybatis:3.5.6.classpath"/>
+    <path refid="library.maven:_org.mybatis:mybatis-spring:2.0.6.classpath"/>
+    <path refid="library.maven:_mysql:mysql-connector-java:5.1.47.classpath"/>
+    <path refid="library.maven:_com.alibaba:druid:1.2.6.classpath"/>
+    <path refid="library.maven:_log4j:log4j:1.2.17.classpath"/>
+    <path refid="library.maven:_com.github.pagehelper:pagehelper:5.2.0.classpath"/>
+    <path refid="library.maven:_com.github.jsqlparser:jsqlparser:3.2.classpath"/>
+    <path refid="library.maven:_javax.servlet:jstl:1.2.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-databind:2.9.10.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-annotations:2.9.10.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-core:2.9.10.classpath"/>
+    <path refid="library.maven:_javax.servlet:javax.servlet-api:3.1.0.classpath"/>
+    <path refid="library.maven:_commons-fileupload:commons-fileupload:1.4.classpath"/>
+    <path refid="library.maven:_commons-io:commons-io:2.2.classpath"/>
+  </path>
+  
+  <path id="spring-springmvc-mybatis.runtime.production.module.classpath">
+    <pathelement location="${spring-springmvc-mybatis.output.dir}"/>
+    <path refid="library.maven:_org.springframework:spring-webmvc:5.2.9.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-aop:5.2.9.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-beans:5.2.9.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-context:5.2.9.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-core:5.2.9.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-jcl:5.2.9.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-expression:5.2.9.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-web:5.2.9.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-aspects:5.2.9.release.classpath"/>
+    <path refid="library.maven:_org.aspectj:aspectjweaver:1.9.6.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-jdbc:5.2.9.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-tx:5.2.9.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-test:5.2.9.release.classpath"/>
+    <path refid="library.maven:_org.mybatis:mybatis:3.5.6.classpath"/>
+    <path refid="library.maven:_org.mybatis:mybatis-spring:2.0.6.classpath"/>
+    <path refid="library.maven:_mysql:mysql-connector-java:5.1.47.classpath"/>
+    <path refid="library.maven:_com.alibaba:druid:1.2.6.classpath"/>
+    <path refid="library.maven:_log4j:log4j:1.2.17.classpath"/>
+    <path refid="library.maven:_com.github.pagehelper:pagehelper:5.2.0.classpath"/>
+    <path refid="library.maven:_com.github.jsqlparser:jsqlparser:3.2.classpath"/>
+    <path refid="library.maven:_javax.servlet:jstl:1.2.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-databind:2.9.10.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-annotations:2.9.10.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-core:2.9.10.classpath"/>
+    <path refid="library.maven:_commons-fileupload:commons-fileupload:1.4.classpath"/>
+    <path refid="library.maven:_commons-io:commons-io:2.2.classpath"/>
+  </path>
+  
+  <path id="spring-springmvc-mybatis.module.classpath">
+    <path refid="${module.jdk.classpath.spring-springmvc-mybatis}"/>
+    <pathelement location="${spring-springmvc-mybatis.output.dir}"/>
+    <path refid="library.maven:_org.springframework:spring-webmvc:5.2.9.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-aop:5.2.9.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-beans:5.2.9.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-context:5.2.9.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-core:5.2.9.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-jcl:5.2.9.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-expression:5.2.9.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-web:5.2.9.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-aspects:5.2.9.release.classpath"/>
+    <path refid="library.maven:_org.aspectj:aspectjweaver:1.9.6.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-jdbc:5.2.9.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-tx:5.2.9.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-test:5.2.9.release.classpath"/>
+    <path refid="library.maven:_org.mybatis:mybatis:3.5.6.classpath"/>
+    <path refid="library.maven:_org.mybatis:mybatis-spring:2.0.6.classpath"/>
+    <path refid="library.maven:_mysql:mysql-connector-java:5.1.47.classpath"/>
+    <path refid="library.maven:_com.alibaba:druid:1.2.6.classpath"/>
+    <path refid="library.maven:_log4j:log4j:1.2.17.classpath"/>
+    <path refid="library.maven:_com.github.pagehelper:pagehelper:5.2.0.classpath"/>
+    <path refid="library.maven:_com.github.jsqlparser:jsqlparser:3.2.classpath"/>
+    <path refid="library.maven:_javax.servlet:jstl:1.2.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-databind:2.9.10.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-annotations:2.9.10.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-core:2.9.10.classpath"/>
+    <path refid="library.maven:_javax.servlet:javax.servlet-api:3.1.0.classpath"/>
+    <path refid="library.maven:_commons-fileupload:commons-fileupload:1.4.classpath"/>
+    <path refid="library.maven:_commons-io:commons-io:2.2.classpath"/>
+    <path refid="library.maven:_junit:junit:4.13.classpath"/>
+    <path refid="library.maven:_org.hamcrest:hamcrest-core:1.3.classpath"/>
+  </path>
+  
+  <path id="spring-springmvc-mybatis.runtime.module.classpath">
+    <pathelement location="${spring-springmvc-mybatis.testoutput.dir}"/>
+    <pathelement location="${spring-springmvc-mybatis.output.dir}"/>
+    <path refid="library.maven:_org.springframework:spring-webmvc:5.2.9.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-aop:5.2.9.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-beans:5.2.9.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-context:5.2.9.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-core:5.2.9.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-jcl:5.2.9.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-expression:5.2.9.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-web:5.2.9.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-aspects:5.2.9.release.classpath"/>
+    <path refid="library.maven:_org.aspectj:aspectjweaver:1.9.6.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-jdbc:5.2.9.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-tx:5.2.9.release.classpath"/>
+    <path refid="library.maven:_org.springframework:spring-test:5.2.9.release.classpath"/>
+    <path refid="library.maven:_org.mybatis:mybatis:3.5.6.classpath"/>
+    <path refid="library.maven:_org.mybatis:mybatis-spring:2.0.6.classpath"/>
+    <path refid="library.maven:_mysql:mysql-connector-java:5.1.47.classpath"/>
+    <path refid="library.maven:_com.alibaba:druid:1.2.6.classpath"/>
+    <path refid="library.maven:_log4j:log4j:1.2.17.classpath"/>
+    <path refid="library.maven:_com.github.pagehelper:pagehelper:5.2.0.classpath"/>
+    <path refid="library.maven:_com.github.jsqlparser:jsqlparser:3.2.classpath"/>
+    <path refid="library.maven:_javax.servlet:jstl:1.2.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-databind:2.9.10.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-annotations:2.9.10.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-core:2.9.10.classpath"/>
+    <path refid="library.maven:_javax.servlet:javax.servlet-api:3.1.0.classpath"/>
+    <path refid="library.maven:_commons-fileupload:commons-fileupload:1.4.classpath"/>
+    <path refid="library.maven:_commons-io:commons-io:2.2.classpath"/>
+    <path refid="library.maven:_junit:junit:4.13.classpath"/>
+    <path refid="library.maven:_org.hamcrest:hamcrest-core:1.3.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.spring-springmvc-mybatis">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.spring-springmvc-mybatis">
+    <patternset refid="excluded.from.module.spring-springmvc-mybatis"/>
+  </patternset>
+  
+  <path id="spring-springmvc-mybatis.module.sourcepath">
+    <dirset dir="${module.spring-springmvc-mybatis.basedir}">
+      <include name="src/main/java"/>
+      <include name="src/main/resources"/>
+    </dirset>
+  </path>
+  
+  <path id="spring-springmvc-mybatis.module.test.sourcepath">
+    <dirset dir="${module.spring-springmvc-mybatis.basedir}">
+      <include name="src/test/java"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.spring-springmvc-mybatis" depends="compile.module.spring-springmvc-mybatis.production,compile.module.spring-springmvc-mybatis.tests" description="Compile module spring-springmvc-mybatis"/>
+  
+  <target name="compile.module.spring-springmvc-mybatis.production" depends="register.custom.compilers" description="Compile module spring-springmvc-mybatis; production classes">
+    <mkdir dir="${spring-springmvc-mybatis.output.dir}"/>
+    <javac2 destdir="${spring-springmvc-mybatis.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.spring-springmvc-mybatis}/javac">
+      <compilerarg line="${compiler.args.spring-springmvc-mybatis}"/>
+      <bootclasspath refid="spring-springmvc-mybatis.module.bootclasspath"/>
+      <classpath refid="spring-springmvc-mybatis.module.production.classpath"/>
+      <src refid="spring-springmvc-mybatis.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.spring-springmvc-mybatis"/>
+    </javac2>
+    
+    <copy todir="${spring-springmvc-mybatis.output.dir}">
+      <fileset dir="${module.spring-springmvc-mybatis.basedir}/src/main/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.spring-springmvc-mybatis.basedir}/src/main/resources">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.spring-springmvc-mybatis.tests" depends="register.custom.compilers,compile.module.spring-springmvc-mybatis.production" description="compile module spring-springmvc-mybatis; test classes" unless="skip.tests">
+    <mkdir dir="${spring-springmvc-mybatis.testoutput.dir}"/>
+    <javac2 destdir="${spring-springmvc-mybatis.testoutput.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.spring-springmvc-mybatis}/javac">
+      <compilerarg line="${compiler.args.spring-springmvc-mybatis}"/>
+      <bootclasspath refid="spring-springmvc-mybatis.module.bootclasspath"/>
+      <classpath refid="spring-springmvc-mybatis.module.classpath"/>
+      <src refid="spring-springmvc-mybatis.module.test.sourcepath"/>
+      <patternset refid="excluded.from.compilation.spring-springmvc-mybatis"/>
+    </javac2>
+    
+    <copy todir="${spring-springmvc-mybatis.testoutput.dir}">
+      <fileset dir="${module.spring-springmvc-mybatis.basedir}/src/test/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="clean.module.spring-springmvc-mybatis" description="cleanup module">
+    <delete dir="${spring-springmvc-mybatis.output.dir}"/>
+    <delete dir="${spring-springmvc-mybatis.testoutput.dir}"/>
+  </target>
+</project>
