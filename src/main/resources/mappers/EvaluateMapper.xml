@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.offcn.dao.EvaluateMapper">
+  <resultMap id="BaseResultMap" type="com.offcn.pojo.Evaluate">
+    <id column="eid" jdbcType="INTEGER" property="eid" />
+    <result column="econtent" jdbcType="VARCHAR" property="econtent" />
+    <result column="b_fk" jdbcType="INTEGER" property="bFk" />
+    <result column="u_fk" jdbcType="INTEGER" property="uFk" />
+    <result column="etime" jdbcType="DATE" property="etime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    eid, econtent, b_fk, u_fk, etime
+  </sql>
+  <select id="selectByExample" parameterType="com.offcn.pojo.EvaluateExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from evaluate
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from evaluate
+    where eid = #{eid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from evaluate
+    where eid = #{eid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.offcn.pojo.EvaluateExample">
+    delete from evaluate
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.offcn.pojo.Evaluate">
+    insert into evaluate (eid, econtent, b_fk, 
+      u_fk, etime)
+    values (#{eid,jdbcType=INTEGER}, #{econtent,jdbcType=VARCHAR}, #{bFk,jdbcType=INTEGER}, 
+      #{uFk,jdbcType=INTEGER}, #{etime,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.offcn.pojo.Evaluate">
+    insert into evaluate
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="eid != null">
+        eid,
+      </if>
+      <if test="econtent != null">
+        econtent,
+      </if>
+      <if test="bFk != null">
+        b_fk,
+      </if>
+      <if test="uFk != null">
+        u_fk,
+      </if>
+      <if test="etime != null">
+        etime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="eid != null">
+        #{eid,jdbcType=INTEGER},
+      </if>
+      <if test="econtent != null">
+        #{econtent,jdbcType=VARCHAR},
+      </if>
+      <if test="bFk != null">
+        #{bFk,jdbcType=INTEGER},
+      </if>
+      <if test="uFk != null">
+        #{uFk,jdbcType=INTEGER},
+      </if>
+      <if test="etime != null">
+        #{etime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.offcn.pojo.EvaluateExample" resultType="java.lang.Long">
+    select count(*) from evaluate
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update evaluate
+    <set>
+      <if test="record.eid != null">
+        eid = #{record.eid,jdbcType=INTEGER},
+      </if>
+      <if test="record.econtent != null">
+        econtent = #{record.econtent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bFk != null">
+        b_fk = #{record.bFk,jdbcType=INTEGER},
+      </if>
+      <if test="record.uFk != null">
+        u_fk = #{record.uFk,jdbcType=INTEGER},
+      </if>
+      <if test="record.etime != null">
+        etime = #{record.etime,jdbcType=DATE},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update evaluate
+    set eid = #{record.eid,jdbcType=INTEGER},
+      econtent = #{record.econtent,jdbcType=VARCHAR},
+      b_fk = #{record.bFk,jdbcType=INTEGER},
+      u_fk = #{record.uFk,jdbcType=INTEGER},
+      etime = #{record.etime,jdbcType=DATE}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.offcn.pojo.Evaluate">
+    update evaluate
+    <set>
+      <if test="econtent != null">
+        econtent = #{econtent,jdbcType=VARCHAR},
+      </if>
+      <if test="bFk != null">
+        b_fk = #{bFk,jdbcType=INTEGER},
+      </if>
+      <if test="uFk != null">
+        u_fk = #{uFk,jdbcType=INTEGER},
+      </if>
+      <if test="etime != null">
+        etime = #{etime,jdbcType=DATE},
+      </if>
+    </set>
+    where eid = #{eid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.offcn.pojo.Evaluate">
+    update evaluate
+    set econtent = #{econtent,jdbcType=VARCHAR},
+      b_fk = #{bFk,jdbcType=INTEGER},
+      u_fk = #{uFk,jdbcType=INTEGER},
+      etime = #{etime,jdbcType=DATE}
+    where eid = #{eid,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,33 @@
+<!DOCTYPE generatorConfiguration PUBLIC
+        "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <!--修改引擎-->
+    <context id="simple" targetRuntime="MyBatis3">
+
+        <!--消除逆向工程生成代码时，添加的注释、注解-->
+        <commentGenerator>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+        
+        <!--数据库连接参数-->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql:///blog?characterEncoding=utf8" userId="root" password=""/>
+
+        <!--实体类包名-->
+        <javaModelGenerator targetPackage="com.offcn.pojo" targetProject="src/main/java"/>
+
+        <!--映射文件位置-->
+        <sqlMapGenerator targetPackage="mappers" targetProject="src/main/resources"/>
+
+        <!--持久层接口包名-->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.offcn.dao" targetProject="src/main/java"/>
+
+        <!--表名-->
+        <table tableName="user" />
+        <table tableName="role" />
+        <table tableName="evaluate" />
+        <table tableName="btype" />
+        <table tableName="blog" />
+    </context>
+</generatorConfiguration>
