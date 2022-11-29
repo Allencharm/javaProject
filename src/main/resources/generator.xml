@@ -30,4 +30,5 @@
         <table tableName="btype" />
         <table tableName="blog" />
     </context>
+
 </generatorConfiguration>
