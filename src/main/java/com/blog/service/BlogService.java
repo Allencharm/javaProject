@@ -13,4 +13,5 @@ public interface BlogService {
 
     PageInfo<Blog> findList(int currentPage, int pageSize);
 
+    void delete(int bid);
 }
