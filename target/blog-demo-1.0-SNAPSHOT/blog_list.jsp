@@ -9,6 +9,7 @@
 <script type="text/javascript" src="js/bootstrap.js"></script>
 <script type="text/javascript" src="js/ckform.js"></script>
 <script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
 <script src="js/jquery-3.6.0.js"></script>
 <style type="text/css">
 body {font-size: 20px;
@@ -47,7 +48,7 @@ body {font-size: 20px;
 		</thead>
 		<tbody id="tbody">
 		   <%--存放行数据--%>
-		   <tr align="center">
+		   <%--<tr align="center">
 			   <td>蒹葭</td>
 			   <td>策</td>
 			   <td>小强</td>
@@ -57,10 +58,19 @@ body {font-size: 20px;
 				   &nbsp;&nbsp;&nbsp;&nbsp;
 				   <a href="blog_detail.jsp">博客详情</a>
 			   </td>
-		   </tr>
+		   </tr>--%>
 		</tbody>
 		<tfoot id="tfoot">
 			<%--设置分页信息--%>
+			<tr>
+				<td colspan="5" style="text-align: right">
+					<a>首页</a>
+					<a>上一页</a>
+					[]
+					<a>下一页</a>
+					<a>尾页</a>
+				</td>
+			</tr>
 		</tfoot>
 	</table>
 <script type="text/javascript">
@@ -69,6 +79,7 @@ body {font-size: 20px;
 		showList(1);
 	})
 
+	//展示列表
 	function showList(currentPage) {
 		$.ajax({
 			url:'blog/list',
@@ -76,8 +87,66 @@ body {font-size: 20px;
 			dataType:'json',
 			success:function (obj) {
 				console.log(obj);
+				$("#tbody").empty();
+
+				$.each(obj.list,function (index, blog) {
+					$("#tbody").append(
+							'<tr align="center">' +
+							'<td>' + blog.btitle + '</td>' +
+							'<td>' + blog.btype.typename + '</td>' +
+							'<td>' + blog.user.uname + '</td>' +
+							'<td>' + msToString(blog.date) + '</td>' +
+							'<td>' +
+							'<a href="javascript:deleteInfo('+ blog.bid +')">删除 </a>' +
+							'&nbsp;&nbsp;&nbsp;&nbsp;' +
+							'<a href="blog_detail.jsp">博客详情</a>' +
+							'</td> ' +
+							'</tr>'
+					);
+				});
+
+				//分页
+				var nums = obj.navigatepageNums;
+				var str = '';
+				for (var i = 0; i < nums.length; i++){
+					var num = nums[i];
+					if (obj.pageNum == num){
+						str += '<a href="javascript:showList(' + num +')" style="color: red">' + num + '</a>';
+					}else {
+						str += '<a href="javascript:showList(' + num +')">' + num + '</a>';
+					}
+				}
+				$("#tfoot").empty();
+				$("#tfoot").append(
+					'<tr>'+
+					'<td colspan="5" style="text-align: right">'+
+						'<a href="javascript:showList(1)">首页</a>'+
+						'<a href="javascript:showList('+ (obj.pageNum - 1) +')">上一页</a>'+
+								'[' + str + ']'+
+						'<a href="javascript:showList('+ (obj.pageNum + 1) +')">下一页</a>'+
+						'<a href="javascript:showList('+ (obj.pages) +')">尾页</a>'+
+					'</td>' +
+					'</tr>'
+				);
 			}
 		})
+	}
+
+	//删除
+	function deleteInfo(bid) {
+		if (confirm('是否要删除当前博客')){
+			$.ajax({
+				url:'blog/delete',
+				data:'bid=' + bid,
+				dataType:'json',
+				success:function (obj) {
+					console.log(obj);
+					location.reload();
+				}
+			})
+		}else{
+			alert('取消了删除操作')
+		}
 	}
 </script>
 </body>

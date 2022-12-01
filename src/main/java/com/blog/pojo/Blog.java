@@ -15,6 +15,10 @@ public class Blog {
 
     private String bcontent;
 
+    private Btype btype;
+
+    private User user;
+
     public Integer getBid() {
         return bid;
     }
@@ -61,5 +65,21 @@ public class Blog {
 
     public void setBcontent(String bcontent) {
         this.bcontent = bcontent;
+    }
+
+    public Btype getBtype() {
+        return btype;
+    }
+
+    public void setBtype(Btype btype) {
+        this.btype = btype;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
