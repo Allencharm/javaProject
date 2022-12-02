@@ -1,6 +1,7 @@
 package com.blog.pojo;
 
 import java.util.Date;
+import java.util.List;
 
 public class Blog {
     private Integer bid;
@@ -18,6 +19,8 @@ public class Blog {
     private Btype btype;
 
     private User user;
+
+    private List<Evaluate> evaluateList;
 
     public Integer getBid() {
         return bid;
@@ -81,5 +84,13 @@ public class Blog {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public List<Evaluate> getEvaluateList() {
+        return evaluateList;
+    }
+
+    public void setEvaluateList(List<Evaluate> evaluateList) {
+        this.evaluateList = evaluateList;
     }
 }

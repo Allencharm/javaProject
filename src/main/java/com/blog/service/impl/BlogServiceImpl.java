@@ -4,10 +4,7 @@ import com.blog.dao.BlogMapper;
 import com.blog.dao.BtypeMapper;
 import com.blog.dao.EvaluateMapper;
 import com.blog.dao.UserMapper;
-import com.blog.pojo.Blog;
-import com.blog.pojo.Btype;
-import com.blog.pojo.EvaluateExample;
-import com.blog.pojo.User;
+import com.blog.pojo.*;
 import com.blog.service.BlogService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -67,4 +64,27 @@ public class BlogServiceImpl implements BlogService {
         //删除博客
         blogMapper.deleteByPrimaryKey(bid);
     }
+
+    @Override
+    public void save(Blog blog) {
+        blogMapper.insertSelective(blog);
+    }
+
+    //显示详情
+    @Override
+    public Blog findOne(int bid) {
+        Blog blog = blogMapper.selectByPrimaryKey(bid);
+        Integer ufk = blog.getuFk();
+        User user = userMapper.selectByPrimaryKey(ufk);
+        blog.setUser(user);
+
+        EvaluateExample evaluateExample = new EvaluateExample();
+        EvaluateExample.Criteria criteria = evaluateExample.createCriteria();
+        criteria.andBFkEqualTo(bid);
+        List<Evaluate> evaluates = evaluateMapper.selectByExample(evaluateExample);
+        blog.setEvaluateList(evaluates);
+        return blog;
+    }
+
+
 }
