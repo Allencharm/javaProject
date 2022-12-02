@@ -7,10 +7,10 @@
     <link rel="stylesheet" type="text/css"
           href="css/bootstrap-responsive.css"/>
     <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    <script src="js/jquery-3.6.0.js"></script>
     <script type="text/javascript" src="js/bootstrap.js"></script>
     <script type="text/javascript" src="js/ckform.js"></script>
     <script type="text/javascript" src="js/common.js"></script>
-    <script src="js/jquery.min.js?v=2.1.4"></script>
     <style type="text/css">
         body {
             font-size: 20px;

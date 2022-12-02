@@ -1,14 +1,14 @@
 package com.blog.controller;
 
 import com.blog.pojo.Blog;
+import com.blog.pojo.User;
 import com.blog.service.BlogService;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -38,5 +38,25 @@ public class BlogController {
         HashMap<String, Boolean> map = new HashMap<>();
         map.put("flag", true);
         return map;
+    }
+
+    //添加功能
+    @PostMapping("add")
+    public Map<String,Boolean> add(Blog blog, HttpSession session){
+        User user = (User) session.getAttribute("user");
+        if (user != null){
+            blog.setuFk(user.getUid());
+        }
+        blog.setDate(new Date());
+        blogService.save(blog);
+        HashMap<String, Boolean> map = new HashMap<>();
+        map.put("flag", true);
+        return map;
+    }
+
+    //显示详情
+    @GetMapping("showDetail")
+    public Blog showDetail(int bid){
+        return blogService.findOne(bid);
     }
 }

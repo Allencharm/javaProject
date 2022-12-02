@@ -6,11 +6,11 @@
 <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
 <link rel="stylesheet" type="text/css" href="css/bootstrap-responsive.css" />
 <link rel="stylesheet" type="text/css" href="css/style.css" />
+<script src="js/jquery-3.6.0.js"></script>
 <script type="text/javascript" src="js/bootstrap.js"></script>
 <script type="text/javascript" src="js/ckform.js"></script>
 <script type="text/javascript" src="js/common.js"></script>
 <script type="text/javascript" src="js/main.js"></script>
-<script src="js/jquery-3.6.0.js"></script>
 <style type="text/css">
 body {font-size: 20px;
 	padding-bottom: 40px;
@@ -99,7 +99,7 @@ body {font-size: 20px;
 							'<td>' +
 							'<a href="javascript:deleteInfo('+ blog.bid +')">删除 </a>' +
 							'&nbsp;&nbsp;&nbsp;&nbsp;' +
-							'<a href="blog_detail.jsp">博客详情</a>' +
+							'<a href="blog_detail.jsp?bid='+ blog.bid + '">博客详情</a>' +
 							'</td> ' +
 							'</tr>'
 					);
@@ -120,10 +120,10 @@ body {font-size: 20px;
 				$("#tfoot").append(
 					'<tr>'+
 					'<td colspan="5" style="text-align: right">'+
-						'<a href="javascript:showList(1)">首页</a>'+
-						'<a href="javascript:showList('+ (obj.pageNum - 1) +')">上一页</a>'+
-								'[' + str + ']'+
-						'<a href="javascript:showList('+ (obj.pageNum + 1) +')">下一页</a>'+
+						'<a href="javascript:showList(1)">首页 </a>'+
+						'<a href="javascript:showList('+ (obj.pageNum - 1) +')">上一页 </a>'+
+								'[' + str + '] '+
+						'<a href="javascript:showList('+ (obj.pageNum + 1) +')">下一页 </a>'+
 						'<a href="javascript:showList('+ (obj.pages) +')">尾页</a>'+
 					'</td>' +
 					'</tr>'
