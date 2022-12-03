@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author ldq
@@ -33,5 +35,14 @@ public class TypeController {
     @GetMapping("showSmallType")
     public List<Btype> showSmallType(int tid){
         return typeService.findSmallType(tid);
+    }
+
+    //删除小类
+    @GetMapping("deleteSmallType")
+    public Map<String,Boolean> deleteSmallType(int tid){
+        typeService.deleteSmallType(tid);
+        HashMap<String, Boolean> map = new HashMap<>();
+        map.put("flag", true);
+        return map;
     }
 }

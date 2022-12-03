@@ -1,5 +1,7 @@
 package com.blog.pojo;
 
+import java.util.List;
+
 public class Btype {
     private Integer typeid;
 
@@ -8,6 +10,8 @@ public class Btype {
     private Integer typePid;
 
     private String typedes;
+
+    private List<Btype> smallTypeList;
 
     public Integer getTypeid() {
         return typeid;
@@ -39,5 +43,13 @@ public class Btype {
 
     public void setTypedes(String typedes) {
         this.typedes = typedes;
+    }
+
+    public List<Btype> getSmallTypeList() {
+        return smallTypeList;
+    }
+
+    public void setSmallTypeList(List<Btype> smallTypeList) {
+        this.smallTypeList = smallTypeList;
     }
 }

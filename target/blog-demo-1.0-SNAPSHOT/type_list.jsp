@@ -7,10 +7,10 @@
     <link rel="stylesheet" type="text/css"
           href="css/bootstrap-responsive.css"/>
     <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    <script src="js/jquery-3.6.0.js"></script>
     <script type="text/javascript" src="js/bootstrap.js"></script>
     <script type="text/javascript" src="js/ckform.js"></script>
     <script type="text/javascript" src="js/common.js"></script>
-    <script src="js/jquery.min.js?v=2.1.4"></script>
     <style type="text/css">
         body {
             font-size: 20px;
@@ -75,4 +75,48 @@
     <a href="type_add.jsp">添加大类</a>
 </button>
 </body>
+<script type="text/javascript">
+    //预加载
+    $(function () {
+        showBigType();
+    })
+    //显示大类
+    function showBigType() {
+        $.ajax({
+            url:'type/showBigType',
+            dataType:'json',
+            success:function(obj){
+                console.log(obj);
+                $("#tbody").empty();
+                $.each(obj,function (index,btype){
+                    var smallList = btype.smallTypeList;
+                    var str = '';
+                    $.each(smallList,function (index2,stype) {
+                        str += '<option value="'+ stype.typeid +'">&nbsp;'+ stype.typename +'</option>';
+                    })
+                    $("#tbody").append(
+                        '<tr>'+
+                        '<td>' + btype.typename + '</td>'+
+                        '<td>' + btype.typedes + '</td>'+
+                        '<td>'+
+                        '<select>'+
+                         str +
+                        '</select>'+
+                        '</td>'+
+                        '<td>'+
+                        '<button type="submit"><a href="subtype_list.jsp?bid='+ btype.typeid +'">管理小类</a></button>'+
+                        '</td>'+
+                        '<td>'+
+                        '<button type="submit"><a href="type_update.jsp">修改</a></button>'+
+                        '</td>'+
+                        '<td>'+
+                        '<button type="submit">删除</button>'+
+                        '</td>'+
+                        '</tr>'
+                    )
+                })
+            }
+        })
+    }
+</script>
 </html>

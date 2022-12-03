@@ -90,11 +90,23 @@ body {font-size: 20px;
 				$("#tbody").empty();
 
 				$.each(obj.list,function (index, blog) {
+					var typename = '';
+					if (blog.btype == null){
+						typename = "暂无类型";
+					}else{
+						typename = blog.btype.typename;
+					}
+					var uname = '';
+					if (blog.user == null){
+						uname = "暂无作者";
+					}else{
+						uname = blog.user.uname;
+					}
 					$("#tbody").append(
 							'<tr align="center">' +
 							'<td>' + blog.btitle + '</td>' +
-							'<td>' + blog.btype.typename + '</td>' +
-							'<td>' + blog.user.uname + '</td>' +
+							'<td>' + typename + '</td>' +
+							'<td>' + uname + '</td>' +
 							'<td>' + msToString(blog.date) + '</td>' +
 							'<td>' +
 							'<a href="javascript:deleteInfo('+ blog.bid +')">删除 </a>' +
