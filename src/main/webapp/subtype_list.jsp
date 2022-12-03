@@ -6,11 +6,11 @@
 <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
 <link rel="stylesheet" type="text/css"
 	href="css/bootstrap-responsive.css" />
+<script src="js/jquery.min.js?v=2.1.4"></script>
 <link rel="stylesheet" type="text/css" href="css/style.css" />
 <script type="text/javascript" src="js/bootstrap.js"></script>
 <script type="text/javascript" src="js/ckform.js"></script>
 <script type="text/javascript" src="js/common.js"></script>
-<script src="js/jquery.min.js?v=2.1.4"></script>
 
 <style type="text/css">
 body {font-size: 20px;
@@ -61,5 +61,50 @@ body {font-size: 20px;
 			<a href="subtype_add.jsp?typeid=${param.typeid}">添加小类</a>
 	  </button>
 </body>
+<script type="text/javascript">
+	//预加载
+	$(function () {
+		showSmallType();
+	})
 
+	//显示小类
+	function showSmallType() {
+		$.ajax({
+			url:'type/showSmallType',
+			data:'tid=${param.bid}',
+			dataType:'json',
+			success:function(obj){
+				console.log(obj);
+				$("#tbody").empty();
+				$.each(obj,function (index,btype){
+					$("#tbody").append(
+						'<tr>'+
+						'<td>' + btype.typename + '</td>'+
+						'<td>' + btype.typedes + '</td>'+
+						'<td>'+
+						'<button onclick="deleteSmallType('+ btype.typeid +')">删除</button>'+
+						'</td>'+
+						'</tr>'
+					)
+				})
+			}
+		})
+	}
+
+	//删除小类
+	function deleteSmallType(tid) {
+		if (confirm("是否删除当前小类")){
+			$.ajax({
+				url:'type/deleteSmallType',
+				data:'tid=' + tid,
+				dataType:'json',
+				success:function(obj){
+					location.reload();
+				}
+			})
+		}else{
+			alert("取消删除")
+		}
+	}
+</script>
 </html>

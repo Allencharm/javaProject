@@ -15,4 +15,5 @@ public interface TypeService {
 
     List<Btype> findSmallType(int tid);
 
+    void deleteSmallType(int tid);
 }
