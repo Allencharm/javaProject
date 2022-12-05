@@ -1,8 +1,12 @@
 package com.blog.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import java.io.Serializable;
 import java.util.Date;
 
-public class User {
+
+public class User implements Serializable {
     private Integer uid;
 
     private String uname;

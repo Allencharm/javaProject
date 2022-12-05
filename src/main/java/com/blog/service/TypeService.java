@@ -16,4 +16,14 @@ public interface TypeService {
     List<Btype> findSmallType(int tid);
 
     void deleteSmallType(int tid);
+
+    void smallAdd(Btype btype);
+
+    void deleteBigType(int tid);
+
+    void bigTypeAdd(Btype btype);
+
+    Btype showOne(int tid);
+
+    void updateBigType(Btype btype);
 }

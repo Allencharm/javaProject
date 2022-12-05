@@ -1,9 +1,10 @@
 package com.blog.pojo;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-public class Blog {
+public class Blog implements Serializable {
     private Integer bid;
 
     private String btitle;

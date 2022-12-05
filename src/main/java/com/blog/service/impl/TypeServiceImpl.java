@@ -67,4 +67,30 @@ public class TypeServiceImpl implements TypeService {
         //删小类
         btypeMapper.deleteByPrimaryKey(tid);
     }
+
+    //添加小类
+    @Override
+    public void smallAdd(Btype btype) {
+        btypeMapper.insertSelective(btype);
+    }
+
+    @Override
+    public void deleteBigType(int tid) {
+        btypeMapper.deleteByPrimaryKey(tid);
+    }
+
+    @Override
+    public void bigTypeAdd(Btype btype) {
+        btypeMapper.insertSelective(btype);
+    }
+
+    @Override
+    public Btype showOne(int tid) {
+        return btypeMapper.selectByPrimaryKey(tid);
+    }
+
+    @Override
+    public void updateBigType(Btype btype) {
+        btypeMapper.updateByPrimaryKey(btype);
+    }
 }

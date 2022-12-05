@@ -1,8 +1,9 @@
 package com.blog.pojo;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Btype {
+public class Btype implements Serializable {
     private Integer typeid;
 
     private String typename;

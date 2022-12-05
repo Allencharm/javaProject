@@ -58,7 +58,7 @@ body {font-size: 20px;
 
 	</table>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="button"  id="addnew">
-			<a href="subtype_add.jsp?typeid=${param.typeid}">添加小类</a>
+			<a href="subtype_add.jsp?typeid=${param.bid}">添加小类</a>
 	  </button>
 </body>
 <script type="text/javascript">

@@ -6,10 +6,11 @@
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
     <link rel="stylesheet" type="text/css" href="css/bootstrap-responsive.css" />
     <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <script src="js/jquery.min.js?v=2.1.4"></script>
+    <script src="js/main.js"></script>
     <script type="text/javascript" src="js/bootstrap.js"></script>
     <script type="text/javascript" src="js/ckform.js"></script>
     <script type="text/javascript" src="js/common.js"></script>
-    <script src="js/jquery.min.js?v=2.1.4"></script>
 
     <style type="text/css">
         body {font-size: 20px;
@@ -49,7 +50,7 @@
         <th>操作</th>
     </tr>
     </thead>
-	    
+	    <tbody id="evaTbody">
         <tr>
                 
                 <td>你来人间一趟，你要看看太阳，和你的心上人，一起走在街上。</td>
@@ -59,9 +60,36 @@
                 <td><button type="button"  id="deletecomment">删除</button></td>
                
         </tr>
-           
-       
-       </table>
+        </tbody>
+</table>
 
+<script type="text/javascript">
+
+    $(function () {
+        showEvalute();
+    })
+
+    function showEvalute() {
+        $.ajax({
+            url:'evaluate/list',
+            dataType:'json',
+            success:function(obj) {
+                console.log(obj);
+                $("#evaTbody").empty();
+                $.each(obj.list,function (index,eva) {
+                    $("#evaTbody").append(
+                        '<tr>'+
+                        '<td>' + eva.econtent + '</td>'+
+                        '<td><a href="user_detail.jsp">'+ eva.user.uname +'</a></td>'+
+                        '<td>'+eva.blog.btitle+'</td>'+
+                        '<td>'+ msToString(eva.etime) +'</td>'+
+                        '<td><button type="button"  id="deletecomment">删除</button></td>'+
+                        '</tr>'
+                    )
+                })
+            }
+        })
+    }
+</script>
 </body>
 </html>

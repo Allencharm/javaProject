@@ -1,5 +1,8 @@
 package com.blog.service;
 
+import com.blog.pojo.Evaluate;
+import com.github.pagehelper.PageInfo;
+
 /**
  * @author ldq
  * @version 1.0
@@ -8,4 +11,6 @@ package com.blog.service;
  */
 public interface EvaluateService {
     void deleteOne(int eid);
+
+    PageInfo<Evaluate> findList(int currentPage, int pageSize);
 }
