@@ -107,16 +107,36 @@
                         '<button type="submit"><a href="subtype_list.jsp?bid='+ btype.typeid +'">管理小类</a></button>'+
                         '</td>'+
                         '<td>'+
-                        '<button type="submit"><a href="type_update.jsp">修改</a></button>'+
+                        '<button><a href="type_update.jsp?bid='+ btype.typeid +'">修改</a></button>'+
                         '</td>'+
                         '<td>'+
-                        '<button type="submit">删除</button>'+
+                        '<button onclick="deleteBigType(' + btype.typeid + ')">删除</button>'+
                         '</td>'+
                         '</tr>'
                     )
                 })
             }
         })
+    }
+    //删除大类
+    function deleteBigType(tid) {
+        if (confirm('是否要删除当前大类')){
+            $.ajax({
+                url: 'type/deleteBigType',
+                data:'tid='+tid,
+                dataType: 'json',
+                success: function (obj) {
+                    if (obj.flag){
+                        location.reload();
+                    }else{
+                        alert("删除操作失败");
+                    }
+                }
+            })
+        }else{
+            alert("取消删除");
+        }
+
     }
 </script>
 </html>

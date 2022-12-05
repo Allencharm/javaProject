@@ -6,11 +6,11 @@
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
     <link rel="stylesheet" type="text/css" href="css/bootstrap-responsive.css" />
     <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <script src="js/jquery.min.js?v=2.1.4"></script>
     <script type="text/javascript" src="js/bootstrap.js"></script>
     <script type="text/javascript" src="js/ckform.js"></script>
     <script type="text/javascript" src="js/common.js"></script>
     <script type="text/javascript" src="js/jquerypicture.js"></script>
-    <script src="js/jquery.min.js?v=2.1.4"></script>
 
     <style type="text/css">
         body {font-size: 20px;
@@ -34,7 +34,7 @@
 <body><br>
 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 <font color="#777777"><strong>添加小类：</strong></font> 
-<form action="#" method="post" class="definewidth m20" id="typeForm2">
+<form class="definewidth m20" id="typeForm2">
 <table style="margin-left:10px;margin-top:3px;">
     <%--页面传递的typeid 充当typePid--%>
     <input type="hidden" name="typePid" value="${param.typeid}"/>
@@ -51,12 +51,27 @@
     <tr>
         <td></td>
        <td>
-            <button style="margin-left:5px;"type="button" class="btn btn-primary" id="saveBtn" >保&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp存</button> &nbsp;&nbsp;<button type="button" class="btn btn-success" name="backid" id="backid"><a href="type_list.jsp"> 返回列表</a></button>
+           <a style="margin-left:5px;" class="btn btn-primary" onclick="smallAdd()" >保&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp存</a>
+           <a style="margin-left:5px;" class="btn btn-success" href="type_list.jsp"> 返回列表</a>
         </td>
     </tr>
 </table>
 </form>
+<script type="text/javascript">
 
+    function smallAdd() {
+        $.ajax({
+            url:'type/smallAdd',
+            type:'post',
+            data:$("#typeForm2").serialize(),
+            dataType:'json',
+            success:function(obj) {
+                console.log(obj);
+                location.href = 'subtype_list.jsp?bid=${param.typeid}';
+            }
+        })
+    }
+</script>
 </body>
 </html>
 

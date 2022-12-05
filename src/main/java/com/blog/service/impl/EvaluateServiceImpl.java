@@ -1,9 +1,14 @@
 package com.blog.service.impl;
 
 import com.blog.dao.EvaluateMapper;
+import com.blog.pojo.Evaluate;
 import com.blog.service.EvaluateService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @author ldq
@@ -20,5 +25,14 @@ public class EvaluateServiceImpl implements EvaluateService {
     @Override
     public void deleteOne(int eid) {
         evaluateMapper.deleteByPrimaryKey(eid);
+    }
+
+    //列表查询
+    @Override
+    public PageInfo<Evaluate> findList(int currentPage, int pageSize) {
+        PageHelper.startPage(currentPage, pageSize);
+        List<Evaluate> evaluates = evaluateMapper.selectByExample(null);
+        PageInfo<Evaluate> pageInfo = new PageInfo<>(evaluates, 5);
+        return pageInfo;
     }
 }

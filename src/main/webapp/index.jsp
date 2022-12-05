@@ -248,7 +248,7 @@
 
             <ul>
                 <li><a class="a" href="javascript:void(0);"
-                       onClick="openurl('deletecomment.jsp');">评价管理</a></li>
+                       onClick="openurl('evaluate_list.jsp');">评价管理</a></li>
 
             </ul>
 

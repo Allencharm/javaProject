@@ -7,6 +7,9 @@
     <result column="b_fk" jdbcType="INTEGER" property="bFk" />
     <result column="u_fk" jdbcType="INTEGER" property="uFk" />
     <result column="etime" jdbcType="DATE" property="etime" />
+
+    <association property="user" javaType="User" column="u_fk" select="com.blog.dao.UserMapper.selectByPrimaryKey" ></association>
+    <association property="blog" javaType="Blog" column="b_fk" select="com.blog.dao.BlogMapper.selectByPrimaryKey" ></association>
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>

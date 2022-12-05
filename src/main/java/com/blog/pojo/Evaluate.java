@@ -1,8 +1,9 @@
 package com.blog.pojo;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Evaluate {
+public class Evaluate implements Serializable {
     private Integer eid;
 
     private String econtent;
@@ -12,6 +13,10 @@ public class Evaluate {
     private Integer uFk;
 
     private Date etime;
+
+    private User user;
+
+    private Blog blog;
 
     public Integer getEid() {
         return eid;
@@ -51,5 +56,21 @@ public class Evaluate {
 
     public void setEtime(Date etime) {
         this.etime = etime;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Blog getBlog() {
+        return blog;
+    }
+
+    public void setBlog(Blog blog) {
+        this.blog = blog;
     }
 }
