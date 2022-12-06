@@ -205,8 +205,8 @@
         博客后台管理系统
     </div>
     <div class="fr top-link">
-        <a href="admin_list.html" target="mainCont" title="DeathGhost"><i
-                class="adminIcon"></i><span>管理员：DeathGhost</span></a>
+        <a href="javascript:logout()"  title="DeathGhost"><i
+                class="adminIcon"></i><span>管理员：${user.uname}</span></a>
     </div>
 </div>
 
@@ -263,7 +263,7 @@
                        onClick="openurl('user_list.jsp');">用户列表</a></li>
             </ul>
         </div>
-        <a class="a1" href="login.jsp"><div class="div2">
+        <a class="a1" href="javascript:logout()"><div class="div2">
             <div class="tcht"></div>
              退出后台
             </div>
@@ -280,6 +280,18 @@
 
 
 </div>
-
+<script type="text/javascript">
+    //登出
+    function logout() {
+        $.ajax({
+            url:'user/logout',
+            dataType:'json',
+            success:function(obj){
+                console.log(obj);
+                location.href = "login.jsp";
+            }
+        });
+    }
+</script>
 </body>
 </html>
